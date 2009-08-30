@@ -1,0 +1,2 @@
+This program displays the current locking situation in a PostgreSQL
+database as a graph.
