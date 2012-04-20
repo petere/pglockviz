@@ -33,7 +33,7 @@ def main():
         if opt == '-o':
             outfile = arg
 
-    conn = psycopg2.connect(rest[0])
+    conn = psycopg2.connect(rest[0] if rest else '')
     cursor = conn.cursor()
     cursor.execute("""
 SELECT n.nspname AS schema,
