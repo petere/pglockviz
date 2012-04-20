@@ -15,7 +15,8 @@ CONN -- A PostgreSQL database connection string, e.g., dbname=test.
 OUTFILE -- The file format is determined based on the extension.
 
 If no output file is specified, the dot graph is printed to the
-standard output.
+standard output.  You could pipe the output into dot -Txlib to display
+the graph.
 """
 
 import getopt
