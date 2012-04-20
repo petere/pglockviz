@@ -71,7 +71,7 @@ WHERE locktype IN ( 'relation', 'tuple' )
     if outfile is not None:
         graph.draw(outfile, prog = 'dot')
     else:
-        print graph.to_string()
+        print(graph.to_string())
 
 
 if __name__ == "__main__":
