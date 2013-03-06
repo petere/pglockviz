@@ -15,7 +15,7 @@ CONN -- A PostgreSQL database connection string, e.g., dbname=test.
 OUTFILE -- The file format is determined based on the extension.
 
 If no output file is specified, the dot graph is printed to the
-standard output.  You could pipe the output into dot -Txlib to display
+standard output.  You could pipe the output into fdp -Txlib to display
 the graph.
 """
 
@@ -69,7 +69,7 @@ WHERE locktype IN ( 'relation', 'tuple' )
                            color = 'red')
 
     if outfile is not None:
-        graph.draw(outfile, prog = 'dot')
+        graph.draw(outfile, prog = 'fdp')
     else:
         print(graph.to_string())
 
