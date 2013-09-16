@@ -24,6 +24,7 @@ import psycopg2
 import pygraphviz
 import sys
 
+
 def main():
     """Main function"""
     outfile = None
@@ -66,26 +67,26 @@ WHERE locktype IN ( 'relation', 'tuple' )
   AND l.pid <> pg_backend_pid()
 """)
 
-    graph = pygraphviz.AGraph(directed = True, name = 'Locks')
+    graph = pygraphviz.AGraph(directed=True, name='Locks')
 
     for row in cursor.fetchall():
         owner = str(row[2]) + r"\n" + row[6][:25]
         obj = row[0] + "." + row[1] + r"\n locktype:" + row[5]
 
-        graph.add_node(owner, shape = 'box')
+        graph.add_node(owner, shape='box')
 
         if row[4]:
-            graph.add_node(obj, shape = 'ellipse')
+            graph.add_node(obj, shape='ellipse')
             graph.add_edge(obj, owner,
-                           label = r"holds\n" + row[3])
+                           label=(r"holds\n" + row[3]))
         else:
-            graph.add_node(obj, shape = 'ellipse', color = 'red')
+            graph.add_node(obj, shape='ellipse', color='red')
             graph.add_edge(owner, obj,
-                           label = r"wants\n" + row[3],
-                           color = 'red')
+                           label=(r"wants\n" + row[3]),
+                           color='red')
 
     if outfile is not None:
-        graph.draw(outfile, prog = 'fdp')
+        graph.draw(outfile, prog='fdp')
     else:
         print(graph.to_string())
 
